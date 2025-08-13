@@ -1,4 +1,22 @@
-# Dependencias para el proyecto del chat
+# Core dependencies
 httpx>=0.25.0
 python-dotenv>=1.0.0
+asyncio
+
+# MCP support
 mcp>=1.0.0
+
+# Optional: Enhanced MCP support
+langchain-openai>=0.1.0
+langchain-community>=0.1.0
+mcp-use>=0.1.0
+
+# FastAPI and web framework
+fastapi>=0.100.0
+uvicorn>=0.23.0
+
+# Data handling
+pydantic>=2.0.0
+
+# Testing
+requests>=2.31.0

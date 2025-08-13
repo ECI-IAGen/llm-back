@@ -9,6 +9,11 @@
 secrets.json
 config/secrets.py
 
+# Configuración MCP con tokens (mantener estructura pero no tokens)
+config/*_with_tokens.json
+config/*_temp.json
+config/*_resolved.json
+
 # ===================================
 # Python
 # ===================================
@@ -280,3 +285,6 @@ cache/
 test_output/
 examples/private/
 debug/
+test_imports.py
+analysis/downloads/
+analysis/reports/
