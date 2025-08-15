@@ -12,8 +12,12 @@ async def main():
     # Crear servidor MCP con el archivo de configuración
     mcp_server = MCPServer(config_file="postgres_mcp_crystaldba.json")
 
+    print("Servidor MCP creado")
+
     # Crear cliente MCP con conexión automática
     mcp_client = await MCPClient.create(mcp_server)
+
+    print("Cliente MCP conectado")
     
     # Obtener todas las herramientas disponibles
     all_tools = await mcp_client.get_all_tools()
@@ -22,8 +26,8 @@ async def main():
     client = mcp_client.get_client()
 
     llm = LLMFactory.create_llm(
-        provider=LLMProvider.OPENAI,
-        model="o3-mini-high",
+        provider=LLMProvider.DEEPSEEK,
+        model="deepseek-chat",
         temperature=1
     )
 

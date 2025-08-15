@@ -301,7 +301,16 @@ async def _process_coordinador_feedback_async(message: str, session_id: str, cal
             session_id=session_id,
             callback_url=callback_url
         )
-        
+
+        print("ENVIANDO NOTIFICACIÓN FINAL")
+        await service.gateway_notifier.send_update(
+            callback_url=callback_url,
+            session_id=session_id,
+            message=result,
+            status="completed",
+            is_complete=True
+        )
+
         print(f"✅ Feedback completado para sesión {session_id}")
         
     except Exception as e:
@@ -310,10 +319,12 @@ async def _process_coordinador_feedback_async(message: str, session_id: str, cal
         # Si hay error y aún tenemos el servicio, intentar enviar notificación de error
         if service and service.gateway_notifier:
             try:
-                await service.gateway_notifier.send_error_update(
+                await service.gateway_notifier.send_update(
                     callback_url=callback_url,
                     session_id=session_id,
-                    error_message=str(e)
+                    message=str(e),
+                    status="error",
+                    is_complete=True
                 )
             except:
                 pass  # Falló la notificación de error, pero no podemos hacer más

@@ -48,6 +48,8 @@ class GatewayNotificationService:
         Returns:
             bool: True si se envió exitosamente, False en caso contrario
         """
+        if message.startswith("🎉 Agent execution complete") or message.startswith("✅ Agent finished"):
+            return True  # No enviar actualizaciones si ya está completo
         try:
             client = await self._get_client()
             
@@ -59,10 +61,12 @@ class GatewayNotificationService:
                 isComplete=is_complete
             )
             
+            print(streaming_request.model_dump(by_alias=True))
+            
             # Enviar POST al gateway
             response = await client.post(
                 callback_url,
-                json=streaming_request.model_dump(),
+                json=streaming_request.model_dump(by_alias=True),
                 headers={"Content-Type": "application/json"}
             )
             

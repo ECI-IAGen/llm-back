@@ -28,9 +28,10 @@ class MCPClient:
             
             # Crear cliente
             self.client = MCPUseClient.from_dict(config)
-            
+            print("Cliente MCP creado con configuración:", config)
             # Crear sesiones
             await self.client.create_all_sessions()
+            print("Sesiones creadas")
             
             self.connected = True
             print("✅ Cliente MCP conectado automáticamente")

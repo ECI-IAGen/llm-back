@@ -10,10 +10,7 @@
         "DATABASE_URI",
         "crystaldba/postgres-mcp",
         "--access-mode=restricted"
-      ],
-      "env": {
-        "DATABASE_URI": "postgresql://postgres:eciiagen2025-2@localhost:5432/postgres"
-      }
+      ]
     }
   }
 }

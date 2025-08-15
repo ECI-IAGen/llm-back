@@ -82,14 +82,6 @@ class StreamingMCPAgent:
             
             # Ejecutar el agente (sin monitoreo de progreso ficticio)
             result = await self.agent.run(prompt)
-            # Enviar resultado final
-            await self.gateway_notifier.send_update(
-                callback_url=callback_url,
-                session_id=session_id,
-                message=result,
-                status="completed",
-                is_complete=True
-            )
             
             return result
             
@@ -99,7 +91,7 @@ class StreamingMCPAgent:
                 callback_url=callback_url,
                 session_id=session_id,
                 message=str(e),
-                status="completed",
+                status="error",
                 is_complete=True
             )
             raise
